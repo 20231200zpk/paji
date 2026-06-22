@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>德州扒鸡 - 中华老字号·国家级非物质文化遗产</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== 全局样式 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            background-color: #2c1a12;
+            font-family: 'Noto Serif SC', '宋体', 'Times New Roman', serif;
+            color: #2c2b28;
+            line-height: 1.5;
+        }
+
+        .page-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #fdf8ed;
+            background-image: radial-gradient(circle at 10% 20%, rgba(210,180,140,0.08) 2%, transparent 2.5%),
+                repeating-linear-gradient(45deg, rgba(180,130,80,0.02) 0px, rgba(180,130,80,0.02) 2px, transparent 2px, transparent 8px);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .page-wrapper::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.15) 100%);
+            z-index: 10;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(98, 48, 28, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(218, 165, 32, 0.3);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        main {
+            margin-top: 80px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-family: 'Noto Serif SC', cursive;
+            color: #ffd966;
+            text-shadow: 2px 2px 0 #5a2e1a, 4px 4px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+        .logo h1 i {
+            font-size: 1.8rem;
+            margin-right: 10px;
+            color: #ffd966;
+            filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3));
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            font-weight: 500;
+        }
+        .nav-links a {
+            color: #fdf8ed;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.2s;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-links a i {
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            border-bottom-color: #ffd966;
+            color: #ffd966;
+            transform: translateY(-2px);
+        }
+        .nav-links a:hover i {
+            transform: scale(1.1);
+        }
+        .nav-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .icon-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: #fdf8ed;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 6px 12px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .icon-btn i {
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .icon-btn:hover {
+            background: rgba(255, 217, 102, 0.3);
+            transform: scale(1.05);
+        }
+        .nav-fav-btn.liked {
+            background: rgba(255, 215, 0, 0.25);
+        }
+        .nav-fav-btn.liked i {
+            color: #ffd700;
+        }
+
+        .buy-btn {
+            background: linear-gradient(135deg, #b87c3a, #7a4316);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: #fff;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .buy-btn i {
+            font-size: 1rem;
+        }
+        .buy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #c98d4a, #8a4c1e);
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid #e6d5b8;
+            position: relative;
+            scroll-margin-top: 80px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #6a2e1a;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .section-title i {
+            font-size: 2.2rem;
+            margin-right: 12px;
+            color: #b47c2e;
+            background: rgba(180, 124, 46, 0.15);
+            padding: 8px;
+            border-radius: 60px;
+            display: inline-block;
+            vertical-align: middle;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37, #b47c2e, #d4af37);
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+        .subhead {
+            text-align: center;
+            color: #7a5a4a;
+            margin-bottom: 48px;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        .subhead i {
+            margin: 0 6px;
+            color: #b47c2e;
+        }
+
+        .card {
+            background: #fffcf5;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            border: 1px solid #f0e2c5;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        .eight-grid {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .eight-grid>* {
+            flex: 1;
+            min-width: 250px;
+        }
+        .four-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .image-card {
+            background: #fffcf5;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #f0e2c5;
+        }
+        .image-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.25);
+        }
+        .image-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+        .image-card .image-label {
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            background: #fffdf5;
+            border-top: 1px solid #f0e2c5;
+            font-size: 0.95rem;
+        }
+        .image-card .image-label i {
+            margin-right: 8px;
+            color: #b47c2e;
+            font-size: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #8b3a2b, #5c2418);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn i {
+            font-size: 1rem;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+            background: linear-gradient(135deg, #a54734, #6e2c1c);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #8b3a2b;
+            color: #8b3a2b;
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: #8b3a2b;
+            color: white;
+        }
+
+        .hero {
+            background: linear-gradient(107deg, rgba(46, 26, 16, 0.8), rgba(90, 50, 32, 0.8)), url('https://i.ibb.co/xKV1yKZD/20260610103443-350-114.png') center/cover no-repeat;
+            background-blend-mode: overlay;
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%);
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero h2 {
+            font-size: 3rem;
+            text-shadow: 4px 4px 8px black;
+            letter-spacing: 6px;
+        }
+        .hero .sub {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px black;
+        }
+        .hero-buttons {
+            gap: 20px;
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 16px;
+            filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
+        }
+        .card h3 i {
+            margin-right: 8px;
+            color: #b45f2b;
+            font-size: 1.2rem;
+        }
+
+        .timeline-wrapper {
+            display: flex;
+            gap: 32px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+        .timeline-images {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .timeline-img-item {
+            background: #fffcf5;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+        .timeline-img-item:hover {
+            transform: translateY(-5px);
+        }
+        .timeline-img-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+            background-color: #e0c8a8;
+        }
+        .timeline-img-caption {
+            padding: 12px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6a2e1a;
+            background: #fffef7;
+            border-top: 1px solid #e6d5b8;
+        }
+        .timeline-img-caption i {
+            margin-right: 8px;
+            font-size: 1rem;
+            background: #f0e2c5;
+            padding: 4px;
+            border-radius: 50%;
+            width: 28px;
+            display: inline-block;
+        }
+        .timeline-right {
+            flex: 3;
+            min-width: 260px;
+            position: relative;
+            padding-left: 40px;
+        }
+        .timeline-right:before {
+            content: "";
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #d4af37, #9e5a2c, #d4af37);
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 48px;
+            padding-left: 40px;
+        }
+        .timeline-year {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #b47c2e;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+            background: #fdf3e0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 20px;
+            border-radius: 40px;
+            margin-bottom: 12px;
+            box-shadow: inset 0 -1px 0 #e0c8a0, 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        .timeline-year i {
+            font-size: 1.6rem;
+            background: #b47c2e20;
+            padding: 6px;
+            border-radius: 50%;
+        }
+        .timeline-desc {
+            background: rgba(255, 250, 235, 0.9);
+            padding: 16px;
+            border-radius: 20px;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .steps-ring {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0;
+        }
+        .step {
+            text-align: center;
+            width: 110px;
+        }
+        .step-circle {
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle at 30% 30%, #f0e2c5, #c9aa7b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: #4b2a18;
+            box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2), inset -2px -2px 4px rgba(0, 0, 0, 0.1), inset 2px 2px 4px rgba(255, 255, 255, 0.6);
+            margin: 0 auto 12px;
+            transition: transform 0.2s;
+        }
+        .step:hover .step-circle {
+            transform: scale(1.05);
+        }
+        .step span {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+        }
+        .product-card {
+            background: #fffaf2;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+        }
+        .product-img {
+            height: 200px;
+            background: #dbc6a0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #6a3e24;
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-info h3 i {
+            margin-right: 8px;
+            color: #b45f2b;
+        }
+        .price {
+            font-size: 1.8rem;
+            color: #b45f2b;
+            font-weight: bold;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .price i {
+            font-size: 1.4rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .product-actions .action-icon {
+            background: rgba(180, 124, 46, 0.12);
+            border: 1px solid rgba(180, 124, 46, 0.2);
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #5a2e1a;
+            cursor: pointer;
+            transition: all 0.25s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            border: none;
+            font-family: inherit;
+        }
+        .product-actions .action-icon i {
+            font-size: 1rem;
+            color: #b47c2e;
+            transition: transform 0.3s;
+        }
+        .product-actions .action-icon:hover {
+            background: rgba(180, 124, 46, 0.25);
+            border-color: #b47c2e;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+        .product-actions .action-icon:hover i {
+            transform: scale(1.2);
+        }
+
+        .favorite-btn.liked i {
+            color: #e74c3c !important;
+        }
+        .favorite-btn.liked {
+            background: rgba(231, 76, 60, 0.12);
+            border-color: #e74c3c;
+        }
+
+        .interact-icon.liked i.fa-thumbs-up {
+            color: #1e90ff;
+        }
+        .interact-icon.liked i.fa-star {
+            color: #f1c40f;
+        }
+        .interact-icon.liked {
+            background: rgba(30, 144, 255, 0.08);
+        }
+
+        .news-wrapper {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .news-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .news-item {
+            display: flex;
+            gap: 24px;
+            background: #fffdf7;
+            border-radius: 20px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            align-items: stretch;
+        }
+        .news-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+        .news-img {
+            flex: 1;
+            min-width: 140px;
+            overflow: hidden;
+        }
+        .news-img img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .news-item:hover .news-img img {
+            transform: scale(1.03);
+        }
+        .news-content {
+            flex: 1.5;
+            padding: 16px 16px 16px 0;
+        }
+        .news-date {
+            font-size: 0.85rem;
+            color: #b46b3a;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .news-date i {
+            margin-right: 6px;
+        }
+        .news-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #5a2e1a;
+        }
+        .news-content h3 i {
+            margin-right: 8px;
+            color: #b47c2e;
+        }
+        .news-content p {
+            font-size: 0.9rem;
+            color: #6a5a4a;
+            line-height: 1.4;
+        }
+        .news-interact {
+            display: flex;
+            gap: 16px;
+            margin-top: 10px;
+        }
+        .news-interact .interact-icon {
+            font-size: 0.85rem;
+            color: #8a7a6a;
+            cursor: pointer;
+            transition: all 0.25s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.04);
+            text-decoration: none;
+            border: none;
+            font-family: inherit;
+        }
+        .news-interact .interact-icon i {
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+        .news-interact .interact-icon:hover {
+            color: #b47c2e;
+            background: rgba(180, 124, 46, 0.12);
+            transform: translateY(-2px);
+        }
+        .news-interact .interact-icon:hover i {
+            transform: scale(1.2);
+        }
+
+        .news-right {
+            flex: 1;
+        }
+        .news-right .card {
+            height: 100%;
+        }
+        .news-right ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .news-right li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0e2c5;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .news-right li i {
+            color: #b47c2e;
+            font-size: 0.9rem;
+            width: 24px;
+        }
+        .news-right li:last-child {
+            border-bottom: none;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .contact-info p {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .contact-info p i {
+            width: 28px;
+            font-size: 1.2rem;
+            color: #b47c2e;
+            text-align: center;
+        }
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            background: #fffef7;
+            border: 1px solid #e0c8a8;
+            border-radius: 12px;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        input:focus,
+        textarea:focus {
+            border-color: #b47c2e;
+            box-shadow: 0 0 0 3px rgba(180, 124, 46, 0.2);
+            outline: none;
+        }
+
+        footer {
+            background: #1f130c;
+            color: #cdba92;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+        footer i {
+            margin: 0 4px;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            color: #cdba92;
+            font-size: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .footer-social a:hover {
+            background: rgba(218, 165, 32, 0.15);
+            border-color: rgba(218, 165, 32, 0.3);
+            color: #ffd966;
+            transform: translateY(-6px) scale(1.08);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== 模态框通用 ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-box {
+            background: #fffcf5;
+            border-radius: 32px;
+            max-width: 600px;
+            width: 100%;
+            padding: 36px 32px 28px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-box.success {
+            max-width: 480px;
+            text-align: center;
+        }
+        @keyframes modalFadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .modal-box .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 1.6rem;
+            color: #8a7a6a;
+            cursor: pointer;
+            transition: transform 0.2s;
+            background: none;
+            border: none;
+        }
+        .modal-box .modal-close:hover {
+            transform: rotate(90deg);
+            color: #c53a2b;
+        }
+        .modal-box .modal-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .modal-box .modal-icon .fa-face-smile-wink {
+            color: #f39c12;
+        }
+        .modal-box .modal-icon .fa-check-circle {
+            color: #27ae60;
+        }
+        .modal-box .modal-icon .fa-paper-plane {
+            color: #3498db;
+        }
+        .modal-box .modal-icon .fa-link {
+            color: #3498db;
+        }
+        .modal-box h2 {
+            text-align: center;
+            font-size: 1.6rem;
+            color: #5a2e1a;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .modal-box .modal-msg {
+            font-size: 1.05rem;
+            color: #3a2a1a;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .modal-box .modal-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            margin-top: 16px;
+        }
+        .modal-box .modal-buttons .btn {
+            min-width: 120px;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        .modal-box .modal-buttons .btn-cancel {
+            background: #e0d5c0;
+            color: #3a2a1a;
+            box-shadow: none;
+        }
+        .modal-box .modal-buttons .btn-cancel:hover {
+            background: #d0c5b0;
+        }
+
+        /* 数量选择器 */
+        .qty-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 12px 0;
+        }
+        .qty-selector button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid #d4af37;
+            background: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #5a2e1a;
+        }
+        .qty-selector button:hover {
+            background: #d4af37;
+            color: #fff;
+        }
+        .qty-selector span {
+            font-size: 1.4rem;
+            font-weight: 600;
+            min-width: 40px;
+            text-align: center;
+            color: #5a2e1a;
+        }
+
+        /* 多品选购表格 */
+        .multi-product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            font-size: 0.95rem;
+        }
+        .multi-product-table th,
+        .multi-product-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e6d5b8;
+            text-align: center;
+        }
+        .multi-product-table th {
+            background: #fdf3e0;
+            color: #5a2e1a;
+            font-weight: 600;
+        }
+        .multi-product-table .qty-selector {
+            gap: 10px;
+            margin: 0;
+        }
+        .multi-product-table .qty-selector button {
+            width: 30px;
+            height: 30px;
+            font-size: 1rem;
+        }
+        .multi-product-table .qty-selector span {
+            font-size: 1.2rem;
+            min-width: 30px;
+        }
+
+        .total-price {
+            text-align: right;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #c53a2b;
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 2px solid #f0e2c5;
+        }
+        .total-price span {
+            font-size: 1.8rem;
+        }
+
+        @media (max-width: 800px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+            section {
+                scroll-margin-top: 120px;
+            }
+            .eight-grid {
+                flex-direction: column;
+            }
+            .timeline-wrapper {
+                flex-direction: column;
+            }
+            .timeline-images {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .timeline-images .timeline-img-item {
+                flex: 1;
+                min-width: 150px;
+            }
+            .timeline-right {
+                padding-left: 20px;
+            }
+            .news-wrapper {
+                flex-direction: column;
+            }
+            .news-item {
+                flex-direction: column;
+            }
+            .news-img {
+                width: 100%;
+                height: 180px;
+            }
+            .news-img img {
+                height: 180px;
+            }
+            .news-content {
+                padding: 16px;
+            }
+            .modal-box {
+                padding: 28px 20px 24px;
+                max-width: 100%;
+            }
+            .modal-box h2 {
+                font-size: 1.3rem;
+            }
+            .modal-box .modal-buttons .btn {
+                min-width: 90px;
+                font-size: 0.9rem;
+                padding: 10px 16px;
+            }
+            .multi-product-table {
+                font-size: 0.8rem;
+            }
+            .multi-product-table th,
+            .multi-product-table td {
+                padding: 6px 4px;
+            }
+            .multi-product-table .qty-selector button {
+                width: 26px;
+                height: 26px;
+                font-size: 0.9rem;
+            }
+            .multi-product-table .qty-selector span {
+                font-size: 1rem;
+                min-width: 24px;
+            }
+            .total-price {
+                font-size: 1.1rem;
+            }
+            .total-price span {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== 单品购买模态框 ========== -->
+    <div class="modal-overlay" id="buyModal">
+        <div class="modal-box">
+            <button class="modal-close" id="buyModalClose">&times;</button>
+            <div class="modal-icon"><i class="fas fa-shopping-bag"></i></div>
+            <h2>购买商品</h2>
+            <div style="text-align:center; font-size:1.2rem; color:#3a2a1a; margin-bottom:4px;" id="buyModalName">德州扒鸡整鸡</div>
+            <div style="text-align:center; font-size:1.6rem; font-weight:700; color:#c53a2b; margin-bottom:12px;"><i class="fas fa-yen-sign"></i><span id="buyModalPrice">98.00</span></div>
+            <div class="qty-selector">
+                <button class="qty-minus">−</button>
+                <span class="qty-number">1</span>
+                <button class="qty-plus">+</button>
+            </div>
+            <div class="total-price">合计：<span id="buyModalTotal">98.00</span> 元</div>
+            <div class="modal-buttons">
+                <button class="btn btn-cancel" id="buyModalCancel"><i class="fas fa-times"></i> 取消</button>
+                <button class="btn" id="buyModalConfirm"><i class="fas fa-check"></i> 确认购买</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 多品选购模态框 ========== -->
+    <div class="modal-overlay" id="multiBuyModal">
+        <div class="modal-box">
+            <button class="modal-close" id="multiBuyModalClose">&times;</button>
+            <div class="modal-icon"><i class="fas fa-shopping-cart"></i></div>
+            <h2>选购产品</h2>
+            <table class="multi-product-table" id="multiProductTable">
+                <thead>
+                    <tr>
+                        <th>产品</th>
+                        <th>单价</th>
+                        <th>数量</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="total-price">合计：<span id="multiTotalPrice">0.00</span> 元</div>
+            <div class="modal-buttons">
+                <button class="btn btn-cancel" id="multiBuyCancel"><i class="fas fa-times"></i> 取消</button>
+                <button class="btn" id="multiBuyConfirm"><i class="fas fa-check"></i> 加入购物车</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 购买成功模态框 ========== -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-box success">
+            <button class="modal-close" id="successModalClose">&times;</button>
+            <div class="modal-icon"><i class="fas fa-check-circle"></i></div>
+            <h2>购买成功！</h2>
+            <div class="modal-msg" id="successMsg">您已成功购买商品。</div>
+            <div class="modal-buttons">
+                <button class="btn" id="successModalOk"><i class="fas fa-check"></i> 确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 分享成功模态框 ========== -->
+    <div class="modal-overlay" id="shareModal">
+        <div class="modal-box success">
+            <button class="modal-close" id="shareModalClose">&times;</button>
+            <div class="modal-icon"><i class="fas fa-link"></i></div>
+            <h2>链接已复制</h2>
+            <div class="modal-msg">分享链接已成功复制到剪贴板！<br>快去分享给朋友吧～</div>
+            <div class="modal-buttons">
+                <button class="btn" id="shareModalOk"><i class="fas fa-check"></i> 确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 留言感谢模态框 ========== -->
+    <div class="modal-overlay" id="messageModal">
+        <div class="modal-box success">
+            <button class="modal-close" id="messageModalClose">&times;</button>
+            <div class="modal-icon"><i class="fas fa-paper-plane"></i></div>
+            <h2>感谢留言</h2>
+            <div class="modal-msg">您的留言已成功提交！<br>我们将尽快与您联系。<br><span style="font-size:0.9rem; color:#7a5a4a;">—— 德州扒鸡团队</span></div>
+            <div class="modal-buttons">
+                <button class="btn" id="messageModalOk"><i class="fas fa-check"></i> 确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 页脚社交提示模态框 ========== -->
+    <div class="modal-overlay" id="socialModal">
+        <div class="modal-box success">
+            <button class="modal-close" id="socialModalClose">&times;</button>
+            <div class="modal-icon"><i class="fas fa-face-smile-wink"></i></div>
+            <h2>温馨提示</h2>
+            <div class="modal-msg">逗逗你呢，真以为有官号啊？</div>
+            <div class="modal-buttons">
+                <button class="btn" id="socialModalOk"><i class="fas fa-check"></i> 确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 对比模态框 ========== -->
+    <div class="modal-overlay" id="compareModal">
+        <div class="modal-box" style="max-width:720px;">
+            <button class="modal-close" id="compareModalClose">&times;</button>
+            <div class="modal-icon"><i class="fas fa-balance-scale"></i></div>
+            <h2>产品对比</h2>
+            <table class="compare-table" style="width:100%; border-collapse:collapse; margin-top:12px; font-size:0.95rem;">
+                <thead>
+                    <tr><th>对比项</th><th>德州扒鸡整鸡</th><th>半只装</th><th>礼盒装</th><th>真空装</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="label">价格</td><td>¥98.00</td><td>¥58.00</td><td>¥168.00</td><td>¥88.00</td></tr>
+                    <tr><td class="label">包装</td><td>真空袋装</td><td>真空袋装</td><td>精美礼盒</td><td>真空袋装</td></tr>
+                    <tr><td class="label">净含量</td><td>约1000g</td><td>约500g</td><td>约1200g</td><td>约800g</td></tr>
+                    <tr><td class="label">特色</td><td>经典整鸡</td><td>便携半只</td><td>节日送礼</td><td>即食便捷</td></tr>
+                    <tr><td class="label">推荐指数</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+                </tbody>
+            </table>
+            <div style="text-align:center; margin-top:20px; font-size:0.9rem; color:#7a5a4a;"><i class="fas fa-info-circle"></i> 点击“立即购买”可快速下单</div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <!-- ========== 导航栏 ========== -->
+        <div class="navbar">
+            <div class="nav-container">
+                <div class="logo"><h1><i class="fas fa-drumstick-bite"></i> 德州扒鸡</h1></div>
+                <ul class="nav-links">
+                    <li><a href="#home"><i class="fas fa-home"></i> 首页</a></li>
+                    <li><a href="#intro"><i class="fas fa-info-circle"></i> 扒鸡简介</a></li>
+                    <li><a href="#craft"><i class="fas fa-cogs"></i> 百年工艺</a></li>
+                    <li><a href="#culture"><i class="fas fa-landmark"></i> 非遗文化</a></li>
+                    <li><a href="#products"><i class="fas fa-tag"></i> 产品特色</a></li>
+                    <li><a href="#news"><i class="fas fa-newspaper"></i> 新闻动态</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> 联系我们</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="icon-btn nav-fav-btn" id="navFavBtn"><i class="far fa-star"></i> 收藏</button>
+                    <button class="buy-btn" id="topBuyBtn"><i class="fas fa-shopping-cart"></i> 购买产品</button>
+                </div>
+            </div>
+        </div>
+
+        <main>
+            <!-- ========== 首页主视觉 ========== -->
+            <section id="home" class="hero">
+                <div class="hero-content container">
+                    <p class="sub">DEZHOU BRAISED CHICKEN</p>
+                    <h2>国家级非物质文化遗产</h2>
+                    <div style="font-size: 3rem; font-weight: bold; text-shadow: 3px 3px 6px black;"><i class="fas fa-chicken"></i> 德州扒鸡</div>
+                    <p class="sub">中华老字号 · 国家级非物质文化遗产<br>三百年传承 · 一味匠心</p>
+                    <p>起源于清代康熙年间，距今已有300余年历史。以独特的五香风味和脱骨工艺闻名。</p>
+                    <div class="hero-buttons">
+                        <a href="#" id="cultureBtn" class="btn-outline btn"><i class="fas fa-flag-checkered"></i> 了解非遗文化</a>
+                        <a href="#" id="craftBtn" class="btn"><i class="fas fa-hammer"></i> 探索制作工艺</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== 扒鸡简介 ========== -->
+            <section id="intro" class="container">
+                <h2 class="section-title"><i class="fas fa-chicken"></i> 扒鸡简介</h2>
+                <div class="subhead"><i class="fas fa-heart"></i> 传承 · 匠心 · 美味</div>
+
+                <div class="eight-grid">
+                    <div class="four-grid">
+                        <div class="card">
+                            <div class="feature-icon"><i class="fas fa-clock-rotate-left"></i></div>
+                            <h3><i class="fas fa-history"></i> 历史悠久</h3>
+                            <p>始于清康熙年间，距今300余年</p>
+                        </div>
+                        <div class="card">
+                            <div class="feature-icon"><i class="fas fa-award"></i></div>
+                            <h3><i class="fas fa-award"></i> 中华老字号</h3>
+                            <p>国家商务部认定</p>
+                        </div>
+                        <div class="card">
+                            <div class="feature-icon"><i class="fas fa-scroll"></i></div>
+                            <h3><i class="fas fa-scroll"></i> 非遗传承</h3>
+                            <p>国家级非物质文化遗产</p>
+                        </div>
+                        <div class="card">
+                            <div class="feature-icon"><i class="fas fa-tools"></i></div>
+                            <h3><i class="fas fa-tools"></i> 匠心工艺</h3>
+                            <p>传统工艺代代相传</p>
+                        </div>
+                    </div>
+
+                    <div class="four-grid">
+                        <div class="image-card">
+                            <img src="https://i.ibb.co/qL8BV2m2/20260610103621-351-114.png" alt="德州扒鸡传统工艺">
+                            <div class="image-label"><i class="fas fa-dove"></i> 历史悠久</div>
+                        </div>
+                        <div class="image-card">
+                            <img src="https://i.ibb.co/QScngb1/20260610103634-352-114.png" alt="德州扒鸡老汤卤制">
+                            <div class="image-label"><i class="fas fa-fire"></i> 百年传承</div>
+                        </div>
+                        <div class="image-card">
+                            <img src="https://i.ibb.co/7NCw5N9Q/20260610103644-353-114.png" alt="德州扒鸡脱骨工艺">
+                            <div class="image-label"><i class="fas fa-hand-sparkles"></i> 独特工艺</div>
+                        </div>
+                        <div class="image-card">
+                            <img src="https://i.ibb.co/n8QrxcqC/20260610103656-354-114.png" alt="德州扒鸡成品">
+                            <div class="image-label"><i class="fas fa-heart"></i> 匠心制作</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 30px; flex-wrap: wrap; margin-top: 48px;">
+                    <div style="flex:2; background: #fef7e8; padding: 24px; border-radius: 32px; box-shadow: inset 0 0 0 1px #fff8, 0 10px 20px rgba(0,0,0,0.1);">
+                        <p style="font-size:1.1rem"><i class="fas fa-quote-left"></i> 德州扒鸡是中国传统名吃，起源于清代康熙年间，距今已有300余年历史，以独特的制作工艺和五香风味闻名全国，是国家级非物质文化遗产代表性项目。</p>
+                        <a href="#" id="storyBtn" class="btn" style="margin-top: 20px;"><i class="fas fa-play-circle"></i> 观看品牌故事 →</a>
+                    </div>
+                    <div style="flex:1; border-radius: 24px; overflow: hidden; box-shadow: 8px 8px 12px rgba(0,0,0,0.2);">
+                        <img src="https://i.ibb.co/PsZTF1Rf/20260610110812-355-114.png" alt="德州扒鸡" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                </div>
+
+                <div class="timeline-wrapper">
+                    <div class="timeline-images">
+                        <div class="timeline-img-item">
+                            <img src="https://i.ibb.co/HTppLmTX/20260612081035-365-114.png" alt="清康熙年间">
+                            <div class="timeline-img-caption"><i class="fas fa-crown"></i> 清康熙年间</div>
+                        </div>
+                        <div class="timeline-img-item">
+                            <img src="https://i.ibb.co/YBKDk4nk/20260612081049-366-114.png" alt="运河时代">
+                            <div class="timeline-img-caption"><i class="fas fa-ship"></i> 运河时代</div>
+                        </div>
+                        <div class="timeline-img-item">
+                            <img src="https://i.ibb.co/67j4HbWh/20260612081105-367-114.png" alt="民国时期">
+                            <div class="timeline-img-caption"><i class="fas fa-clock"></i> 民国时期</div>
+                        </div>
+                        <div class="timeline-img-item">
+                            <img src="https://i.ibb.co/tGpZHB9/20260612081117-368-114.png" alt="新中国成立后">
+                            <div class="timeline-img-caption"><i class="fas fa-flag-china"></i> 新中国成立后</div>
+                        </div>
+                        <div class="timeline-img-item">
+                            <img src="https://i.ibb.co/7JS9R68V/20260612081132-369-114.png" alt="2014年非遗入选">
+                            <div class="timeline-img-caption"><i class="fas fa-medal"></i> 2014年非遗入选</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-right">
+                        <div class="timeline-item">
+                            <div class="timeline-year"><i class="fas fa-calendar-alt"></i> 1692年</div>
+                            <div class="timeline-desc">清康熙年间 · 起源于德州，古法卤制初成名。<br>公元1692年（清康熙三十一年），德州扒鸡的雏形产生，以贾健才为代表的烧鸡制作艺人，经多次改良，制作出了有别于烧鸡造型和色泽的“扒鸡”。</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year"><i class="fas fa-water"></i> 运河时代</div>
+                            <div class="timeline-desc">借助京杭大运河繁荣，美食随运河传四方。<br>元末明初，随着京杭大运河漕运繁忙和陆路古道兴旺，德州成为京都通达九省的御路，经济繁荣，烧鸡作为扒鸡的雏型初露头角。</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year"><i class="fas fa-landmark"></i> 民国时期</div>
+                            <div class="timeline-desc">“德州扒鸡”名号确立，成为宴席佳肴。<br>德州扒鸡源于明代，盛于清末民初，经过历代传人的不断改进，名号正式确立，享誉四方。</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year"><i class="fas fa-china-railway"></i> 新中国成立后</div>
+                            <div class="timeline-desc">传统工艺传承发展，走向全国。<br>新中国成立后，德州扒鸡传统工艺得到系统整理和保护，品牌影响力不断扩大，走向全国。</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year"><i class="fas fa-trophy"></i> 2014年</div>
+                            <div class="timeline-desc">入选国家级非物质文化遗产名录。<br>德州扒鸡制作技艺成功入选第四批国家级非物质文化遗产代表性项目名录，成为德州饮食文化的瑰宝。</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== 百年工艺 ========== -->
+            <section id="craft" class="container">
+                <h2 class="section-title"><i class="fas fa-cogs"></i> 百年工艺</h2>
+                <div class="subhead"><i class="fas fa-heartbeat"></i> 匠心传承 · 古法秘制</div>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;"><i class="fas fa-check-circle"></i> 德州扒鸡沿用传统古法工艺，精选优质食材，历经六大核心步骤，成就骨筋酥烂、五香脱骨的独特风味。</p>
+                <div class="steps-ring">
+                    <div class="step"><div class="step-circle"><i class="fas fa-seedling"></i></div><span>选料</span></div>
+                    <div class="step"><div class="step-circle"><i class="fas fa-droplet"></i></div><span>宰杀放血</span></div>
+                    <div class="step"><div class="step-circle"><i class="fas fa-thermometer-half"></i></div><span>烫鸡煺毛</span></div>
+                    <div class="step"><div class="step-circle"><i class="fas fa-drumstick-bite"></i></div><span>老汤卤制</span></div>
+                    <div class="step"><div class="step-circle"><i class="fas fa-hand-peace"></i></div><span>脱骨整形</span></div>
+                    <div class="step"><div class="step-circle"><i class="fas fa-box"></i></div><span>成品包装</span></div>
+                </div>
+                <div style="display: flex; gap: 24px; margin-top: 48px; flex-wrap: wrap;">
+                    <div class="card" style="flex:1"><h3><i class="fas fa-leaf"></i> 秘制香料</h3><p>精选八角、花椒、桂皮等十余种天然香料，按古法配比，五香入味。</p></div>
+                    <div class="card" style="flex:1"><h3><i class="fas fa-utensils"></i> 百年老汤</h3><p>传承百年的老汤，24小时慢炖，汤鲜味醇，肉质鲜嫩。</p></div>
+                </div>
+                <div style="text-align: center; margin-top: 48px; font-style: italic; background: #f3ebd8; padding: 24px; border-radius: 48px; box-shadow: inset 0 1px 4px #fff8, 0 8px 12px rgba(0,0,0,0.1);"><i class="fas fa-quote-right"></i> “一只扒鸡，六道工序，百年传承，只为这一口匠心美味。”</div>
+            </section>
+
+            <!-- ========== 非遗文化 ========== -->
+            <section id="culture" class="container">
+                <h2 class="section-title"><i class="fas fa-landmark"></i> 非遗文化</h2>
+                <div class="subhead">德州扒鸡制作技艺 · 国家级非物质文化遗产</div>
+                <div style="background: #dac29230; padding: 32px; border-radius: 48px; margin: 24px 0;">
+                    <p style="font-size:1.2rem"><i class="fas fa-scroll"></i> 德州扒鸡制作技艺，历经三百年传承与发展，2014年入选国家级非物质文化遗产代表性项目名录，是德州饮食文化的瑰宝。</p>
+                    <div style="margin-top: 24px; text-align: right;">—— 中华人民共和国国务院公布 二0一四年十一月</div>
+                    <div style="margin-top: 24px; text-align: center;">
+                        <a href="https://www.bilibili.com/video/BV1kb4y1M7iT/?share_source=copy_web" target="_blank" rel="noopener noreferrer" class="btn-outline btn"><i class="fas fa-video"></i> 观看非遗纪录片</a>
+                    </div>
+                </div>
+                <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 32px;">
+                    <div class="card"><h3><i class="fas fa-medal"></i> 国家级非遗</h3><p>政府保护与传承</p></div>
+                    <div class="card"><h3><i class="fas fa-user-friends"></i> 代表性传承人</h3><p>崔贵海 · 李建国 · 刘玉海</p></div>
+                    <div class="card"><h3><i class="fas fa-file-alt"></i> 荣誉与认可</h3><p>中华老字号 · 山东省非遗</p></div>
+                </div>
+            </section>
+
+            <!-- ========== 产品特色 ========== -->
+            <section id="products" class="container">
+                <h2 class="section-title"><i class="fas fa-tags"></i> 产品特色</h2>
+                <div class="subhead"><i class="fas fa-star"></i> 五香脱骨 · 百年老汤 · 传统风味</div>
+                <div class="product-grid">
+                    <!-- 产品 1 -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://i.ibb.co/TxvmTzhv/1.jpg" style="width:100%; height:100%; object-fit:cover;" alt="德州扒鸡整鸡">
+                        </div>
+                        <div class="product-info">
+                            <h3><i class="fas fa-drumstick-bite"></i> 德州扒鸡整鸡</h3>
+                            <p><i class="fas fa-check-circle"></i> 经典五香味，真空锁鲜</p>
+                            <div class="price"><i class="fas fa-yen-sign"></i> 98.00</div>
+                            <button class="btn buy-single-btn" data-name="德州扒鸡整鸡" data-price="98.00">
+                                <i class="fas fa-shopping-cart"></i> 立即购买
+                            </button>
+                            <div class="product-actions">
+                                <button class="action-icon favorite-btn" data-product="whole">
+                                    <i class="far fa-heart"></i> 收藏
+                                </button>
+                                <button class="action-icon compare-btn">
+                                    <i class="fas fa-balance-scale"></i> 对比
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 产品 2 -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://i.ibb.co/5g1XKFX9/2.jpg" style="width:100%; height:100%; object-fit:cover;" alt="半只装">
+                        </div>
+                        <div class="product-info">
+                            <h3><i class="fas fa-drumstick-bite"></i> 半只装</h3>
+                            <p><i class="fas fa-box"></i> 独立包装，方便美味</p>
+                            <div class="price"><i class="fas fa-yen-sign"></i> 58.00</div>
+                            <button class="btn buy-single-btn" data-name="半只装" data-price="58.00">
+                                <i class="fas fa-shopping-cart"></i> 立即购买
+                            </button>
+                            <div class="product-actions">
+                                <button class="action-icon favorite-btn" data-product="half">
+                                    <i class="far fa-heart"></i> 收藏
+                                </button>
+                                <button class="action-icon compare-btn">
+                                    <i class="fas fa-balance-scale"></i> 对比
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 产品 3 -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://i.ibb.co/fVGD81fg/3.jpg" style="width:100%; height:100%; object-fit:cover;" alt="礼盒装">
+                        </div>
+                        <div class="product-info">
+                            <h3><i class="fas fa-gift"></i> 礼盒装</h3>
+                            <p><i class="fas fa-star"></i> 精选整鸡礼盒</p>
+                            <div class="price"><i class="fas fa-yen-sign"></i> 168.00</div>
+                            <button class="btn buy-single-btn" data-name="礼盒装" data-price="168.00">
+                                <i class="fas fa-shopping-cart"></i> 立即购买
+                            </button>
+                            <div class="product-actions">
+                                <button class="action-icon favorite-btn" data-product="gift">
+                                    <i class="far fa-heart"></i> 收藏
+                                </button>
+                                <button class="action-icon compare-btn">
+                                    <i class="fas fa-balance-scale"></i> 对比
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 产品 4 -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://i.ibb.co/DfK0V4n0/4.jpg" style="width:100%; height:100%; object-fit:cover;" alt="真空装">
+                        </div>
+                        <div class="product-info">
+                            <h3><i class="fas fa-box-open"></i> 真空装</h3>
+                            <p><i class="fas fa-running"></i> 开袋即食，新鲜直达</p>
+                            <div class="price"><i class="fas fa-yen-sign"></i> 88.00</div>
+                            <button class="btn buy-single-btn" data-name="真空装" data-price="88.00">
+                                <i class="fas fa-shopping-cart"></i> 立即购买
+                            </button>
+                            <div class="product-actions">
+                                <button class="action-icon favorite-btn" data-product="vacuum">
+                                    <i class="far fa-heart"></i> 收藏
+                                </button>
+                                <button class="action-icon compare-btn">
+                                    <i class="fas fa-balance-scale"></i> 对比
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== 新闻动态 ========== -->
+            <section id="news" class="container">
+                <h2 class="section-title"><i class="fas fa-newspaper"></i> 新闻动态</h2>
+                <div class="subhead"><i class="fas fa-share-alt"></i> 传承非遗文化 · 传播德州味道</div>
+                <div class="news-wrapper">
+                    <div class="news-left">
+                        <!-- 新闻 1 -->
+                        <div class="news-item">
+                            <div class="news-img">
+                                <img src="https://i.ibb.co/Gf7LRWVM/aa.jpg" alt="德州扒鸡非遗新闻配图">
+                            </div>
+                            <div class="news-content">
+                                <div class="news-date"><i class="far fa-calendar-alt"></i> 2024-05-20</div>
+                                <h3><i class="fas fa-award"></i> 德州扒鸡入选国家级非物质文化遗产名录</h3>
+                                <p>2014年，德州扒鸡制作技艺入选国家级非遗...</p>
+                                <div class="news-interact">
+                                    <button class="interact-icon like-btn"><i class="far fa-thumbs-up"></i> 赞</button>
+                                    <button class="interact-icon news-fav-btn"><i class="far fa-star"></i> 收藏</button>
+                                    <button class="interact-icon share-btn"><i class="fas fa-share-alt"></i> 分享</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 新闻 2 -->
+                        <div class="news-item">
+                            <div class="news-img">
+                                <img src="https://i.ibb.co/hFNzLwwF/ab.jpg" alt="德州扒鸡老字号配图">
+                            </div>
+                            <div class="news-content">
+                                <div class="news-date"><i class="far fa-calendar-alt"></i> 2024-04-28</div>
+                                <h3><i class="fas fa-trophy"></i> 德州扒鸡荣获“中华老字号”称号</h3>
+                                <p>传承三百年匠心...</p>
+                                <div class="news-interact">
+                                    <button class="interact-icon like-btn"><i class="far fa-thumbs-up"></i> 赞</button>
+                                    <button class="interact-icon news-fav-btn"><i class="far fa-star"></i> 收藏</button>
+                                    <button class="interact-icon share-btn"><i class="fas fa-share-alt"></i> 分享</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 新闻 3 -->
+                        <div class="news-item">
+                            <div class="news-img">
+                                <img src="https://i.ibb.co/m5yvK1NV/ac.jpg" alt="德州扒鸡老汤配图">
+                            </div>
+                            <div class="news-content">
+                                <div class="news-date"><i class="far fa-calendar-alt"></i> 2024-03-12</div>
+                                <h3><i class="fas fa-utensils"></i> 百年老汤的秘密：一锅传三代</h3>
+                                <p>探寻不变的美味秘诀...</p>
+                                <div class="news-interact">
+                                    <button class="interact-icon like-btn"><i class="far fa-thumbs-up"></i> 赞</button>
+                                    <button class="interact-icon news-fav-btn"><i class="far fa-star"></i> 收藏</button>
+                                    <button class="interact-icon share-btn"><i class="fas fa-share-alt"></i> 分享</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-right">
+                        <div class="card">
+                            <h3><i class="fas fa-list-ul"></i> 推荐文章</h3>
+                            <ul>
+                                <li><i class="fas fa-graduation-cap"></i> 德州扒鸡非遗技艺传承研修班圆满举办</li>
+                                <li><i class="fas fa-china-railway"></i> 德州扒鸡亮相中国国际食品博览会</li>
+                                <li><i class="fas fa-magic"></i> 五香脱骨技艺解析</li>
+                                <li><i class="fas fa-search"></i> 匠心选料：成就德州扒鸡独特风味</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== 联系我们 ========== -->
+            <section id="contact" class="container">
+                <h2 class="section-title"><i class="fas fa-address-card"></i> 联系我们</h2>
+                <div class="contact-grid">
+                    <div class="card contact-info">
+                        <h3><i class="fas fa-building"></i> 德州扒鸡 · 传承百年匠心</h3>
+                        <p><i class="fas fa-phone-alt"></i> 官方电话：0534-1234567</p>
+                        <p><i class="fas fa-envelope"></i> 官方邮箱：dzpj@laozihao.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 地址：山东省德州市德城区扒鸡美食街1号</p>
+                        <p><i class="fab fa-weixin"></i> 关注「德州扒鸡」微信公众号</p>
+                        <img src="https://picsum.photos/id/147/120/120" style="width:120px; height:120px; margin-top:20px;" alt="二维码">
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-comment-dots"></i> 在线留言</h3>
+                        <input type="text" id="guestName" placeholder="您的姓名">
+                        <input type="email" id="guestEmail" placeholder="联系电话">
+                        <textarea id="message" rows="4" placeholder="留言内容"></textarea>
+                        <button class="btn" id="submitMsgBtn"><i class="fas fa-paper-plane"></i> 提交留言</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ========== 页脚 ========== -->
+        <footer>
+            <p><i class="fas fa-drumstick-bite"></i> 一只扒鸡，承载三百年匠心 · 正心恒新，品质保证 · 全国配送</p>
+            <p>© 德州扒鸡 中华老字号 国家级非物质文化遗产 <i class="fas fa-copyright"></i></p>
+            <div class="footer-social">
+                <a class="social-icon" data-platform="微信"><i class="fab fa-weixin"></i></a>
+                <a class="social-icon" data-platform="微博"><i class="fab fa-weibo"></i></a>
+                <a class="social-icon" data-platform="抖音"><i class="fab fa-tiktok"></i></a>
+                <a class="social-icon" data-platform="B站"><i class="fab fa-bilibili"></i></a>
+                <a class="social-icon" data-platform="小红书"><i class="fab fa-xiaohongshu"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // ============================================================
+        //  1. 导航收藏
+        // ============================================================
+        document.getElementById('navFavBtn').addEventListener('click', function() {
+            this.classList.toggle('liked');
+            var icon = this.querySelector('i');
+            if (this.classList.contains('liked')) {
+                icon.className = 'fas fa-star';
+            } else {
+                icon.className = 'far fa-star';
+            }
+        });
+
+        // ============================================================
+        //  2. 单品购买
+        // ============================================================
+        (function() {
+            var modal = document.getElementById('buyModal');
+            var closeBtn = document.getElementById('buyModalClose');
+            var cancelBtn = document.getElementById('buyModalCancel');
+            var confirmBtn = document.getElementById('buyModalConfirm');
+            var nameEl = document.getElementById('buyModalName');
+            var priceEl = document.getElementById('buyModalPrice');
+            var totalEl = document.getElementById('buyModalTotal');
+            var qtySpan = document.querySelector('#buyModal .qty-number');
+            var minusBtn = document.querySelector('#buyModal .qty-minus');
+            var plusBtn = document.querySelector('#buyModal .qty-plus');
+
+            var currentName = '';
+            var currentPrice = 0;
+            var currentQty = 1;
+
+            function updateTotal() {
+                var total = currentPrice * currentQty;
+                totalEl.textContent = total.toFixed(2);
+            }
+
+            function openModal(name, price) {
+                currentName = name;
+                currentPrice = parseFloat(price);
+                currentQty = 1;
+                nameEl.textContent = name;
+                priceEl.textContent = price;
+                qtySpan.textContent = 1;
+                updateTotal();
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModal();
+            });
+
+            minusBtn.addEventListener('click', function() {
+                if (currentQty > 1) {
+                    currentQty--;
+                    qtySpan.textContent = currentQty;
+                    updateTotal();
+                }
+            });
+            plusBtn.addEventListener('click', function() {
+                currentQty++;
+                qtySpan.textContent = currentQty;
+                updateTotal();
+            });
+
+            function showSuccess(msg) {
+                var successModal = document.getElementById('successModal');
+                var msgEl = document.getElementById('successMsg');
+                msgEl.textContent = msg || '您已成功购买商品。';
+                successModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            confirmBtn.addEventListener('click', function() {
+                var total = currentPrice * currentQty;
+                var msg = '您已购买「' + currentName + '」' + currentQty + ' 件，合计 ¥' + total.toFixed(2) + '。感谢您的支持！';
+                closeModal();
+                setTimeout(function() {
+                    showSuccess(msg);
+                }, 150);
+            });
+
+            document.querySelectorAll('.buy-single-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var name = this.getAttribute('data-name') || '商品';
+                    var price = this.getAttribute('data-price') || '0.00';
+                    openModal(name, price);
+                });
+            });
+
+            document.getElementById('successModalOk').addEventListener('click', function() {
+                document.getElementById('successModal').classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            document.getElementById('successModalClose').addEventListener('click', function() {
+                document.getElementById('successModal').classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            document.getElementById('successModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        })();
+
+        // ============================================================
+        //  3. 多品选购
+        // ============================================================
+        (function() {
+            var modal = document.getElementById('multiBuyModal');
+            var closeBtn = document.getElementById('multiBuyModalClose');
+            var cancelBtn = document.getElementById('multiBuyCancel');
+            var confirmBtn = document.getElementById('multiBuyConfirm');
+            var tbody = document.querySelector('#multiProductTable tbody');
+            var totalSpan = document.getElementById('multiTotalPrice');
+
+            var products = [
+                { name: '德州扒鸡整鸡', price: 98.00 },
+                { name: '半只装', price: 58.00 },
+                { name: '礼盒装', price: 168.00 },
+                { name: '真空装', price: 88.00 }
+            ];
+            var quantities = {};
+
+            function renderTable() {
+                tbody.innerHTML = '';
+                products.forEach(function(p, index) {
+                    var key = 'p' + index;
+                    if (quantities[key] === undefined) quantities[key] = 0;
+                    var tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${p.name}</td>
+                        <td>¥${p.price.toFixed(2)}</td>
+                        <td>
+                            <div class="qty-selector" style="gap:10px; margin:0;">
+                                <button class="multi-minus" data-key="${key}">−</button>
+                                <span class="multi-qty" data-key="${key}">${quantities[key]}</span>
+                                <button class="multi-plus" data-key="${key}">+</button>
+                            </div>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+                tbody.querySelectorAll('.multi-minus').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        var key = this.getAttribute('data-key');
+                        if (quantities[key] > 0) {
+                            quantities[key]--;
+                            updateQtyDisplay(key);
+                            updateTotal();
+                        }
+                    });
+                });
+                tbody.querySelectorAll('.multi-plus').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        var key = this.getAttribute('data-key');
+                        quantities[key]++;
+                        updateQtyDisplay(key);
+                        updateTotal();
+                    });
+                });
+                updateTotal();
+            }
+
+            function updateQtyDisplay(key) {
+                var span = document.querySelector('.multi-qty[data-key="' + key + '"]');
+                if (span) span.textContent = quantities[key];
+            }
+
+            function updateTotal() {
+                var total = 0;
+                products.forEach(function(p, index) {
+                    var key = 'p' + index;
+                    total += p.price * (quantities[key] || 0);
+                });
+                totalSpan.textContent = total.toFixed(2);
+            }
+
+            function openModal() {
+                products.forEach(function(p, index) {
+                    var key = 'p' + index;
+                    quantities[key] = 0;
+                });
+                renderTable();
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModal();
+            });
+
+            confirmBtn.addEventListener('click', function() {
+                var total = 0;
+                var items = [];
+                products.forEach(function(p, index) {
+                    var key = 'p' + index;
+                    var qty = quantities[key] || 0;
+                    if (qty > 0) {
+                        total += p.price * qty;
+                        items.push(p.name + '×' + qty);
+                    }
+                });
+                if (items.length === 0) {
+                    alert('请至少选择一件商品。');
+                    return;
+                }
+                var msg = '您已选购：' + items.join('、') + '，合计 ¥' + total.toFixed(2) + '。感谢您的支持！';
+                closeModal();
+                setTimeout(function() {
+                    var successModal = document.getElementById('successModal');
+                    document.getElementById('successMsg').textContent = msg;
+                    successModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }, 150);
+            });
+
+            document.getElementById('topBuyBtn').addEventListener('click', function() {
+                openModal();
+            });
+        })();
+
+        // ============================================================
+        //  4. 分享按钮
+        // ============================================================
+        (function() {
+            var shareModal = document.getElementById('shareModal');
+            var closeBtn = document.getElementById('shareModalClose');
+            var okBtn = document.getElementById('shareModalOk');
+
+            function openShareSuccess() {
+                shareModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeShare() {
+                shareModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            closeBtn.addEventListener('click', closeShare);
+            okBtn.addEventListener('click', closeShare);
+            shareModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            document.querySelectorAll('.share-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openShareSuccess();
+                });
+            });
+        })();
+
+        // ============================================================
+        //  5. 留言提交
+        // ============================================================
+        (function() {
+            var submitBtn = document.getElementById('submitMsgBtn');
+            var modal = document.getElementById('messageModal');
+            var closeBtn = document.getElementById('messageModalClose');
+            var okBtn = document.getElementById('messageModalOk');
+
+            function openModal() {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            okBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModal();
+            });
+
+            submitBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal();
+            });
+        })();
+
+        // ============================================================
+        //  6. 产品收藏
+        // ============================================================
+        document.querySelectorAll('.favorite-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.classList.toggle('liked');
+                var icon = this.querySelector('i');
+                if (this.classList.contains('liked')) {
+                    icon.className = 'fas fa-heart';
+                } else {
+                    icon.className = 'far fa-heart';
+                }
+            });
+        });
+
+        // ============================================================
+        //  7. 对比
+        // ============================================================
+        (function() {
+            var modal = document.getElementById('compareModal');
+            var closeBtn = document.getElementById('compareModalClose');
+
+            function openCompare() {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeCompare() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            closeBtn.addEventListener('click', closeCompare);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeCompare();
+            });
+
+            document.querySelectorAll('.compare-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openCompare();
+                });
+            });
+        })();
+
+        // ============================================================
+        //  8. 新闻点赞/收藏
+        // ============================================================
+        document.querySelectorAll('.like-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.classList.toggle('liked');
+                var icon = this.querySelector('i');
+                if (this.classList.contains('liked')) {
+                    icon.className = 'fas fa-thumbs-up';
+                } else {
+                    icon.className = 'far fa-thumbs-up';
+                }
+            });
+        });
+        document.querySelectorAll('.news-fav-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.classList.toggle('liked');
+                var icon = this.querySelector('i');
+                if (this.classList.contains('liked')) {
+                    icon.className = 'fas fa-star';
+                } else {
+                    icon.className = 'far fa-star';
+                }
+            });
+        });
+
+        // ============================================================
+        //  9. 页脚社交图标 - 点击弹出温馨提醒
+        // ============================================================
+        (function() {
+            var socialModal = document.getElementById('socialModal');
+            var closeBtn = document.getElementById('socialModalClose');
+            var okBtn = document.getElementById('socialModalOk');
+
+            function openSocialModal() {
+                socialModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSocialModal() {
+                socialModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            closeBtn.addEventListener('click', closeSocialModal);
+            okBtn.addEventListener('click', closeSocialModal);
+            socialModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            document.querySelectorAll('.footer-social .social-icon').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openSocialModal();
+                });
+            });
+        })();
+
+        // ============================================================
+        //  10. 导航高亮
+        // ============================================================
+        var sections = document.querySelectorAll('section[id]');
+        var navLinks = document.querySelectorAll('.nav-links a');
+
+        function updateActiveLink() {
+            var current = '';
+            var scrollPos = window.scrollY + 150;
+            sections.forEach(function(section) {
+                var sectionTop = section.offsetTop;
+                var sectionBottom = sectionTop + section.offsetHeight;
+                if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(function(link) {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', updateActiveLink);
+        window.addEventListener('load', updateActiveLink);
+
+        // 其他跳转按钮
+        document.getElementById('cultureBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open('https://www.bilibili.com/video/BV1Mg8RzFE8B/?share_source=copy_web&vd_source=c9adc551a5a81c0d3645b009926567f8', '_blank');
+        });
+        document.getElementById('craftBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open('https://www.bilibili.com/video/BV1oGMQzyE8c/?share_source=copy_web&vd_source=c9adc551a5a81c0d3645b009926567f8', '_blank');
+        });
+        document.getElementById('storyBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open('https://www.example.com/brand-story', '_blank');
+        });
+    </script>
+</body>
+</html>
